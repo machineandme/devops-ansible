@@ -1,0 +1,22 @@
+machineand.me:80 {
+    redir https://machineand.me
+}
+
+machineand.me:443 {
+    tls billionspoint@gmail.com
+    header Location http:// https://
+    
+    encode zstd gzip
+    header Cache-Control max-age=3600
+
+    root * /data/static/www/
+    file_server browse
+
+    log {
+        output file /var/log/caddy.access.log {
+            roll_size 1gb
+            roll_keep 5
+            roll_keep_for 720h
+        }
+    }
+}
