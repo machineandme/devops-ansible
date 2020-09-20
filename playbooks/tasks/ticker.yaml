@@ -1,0 +1,22 @@
+---
+- name: Creating Ticker service in systemd
+  copy:
+    dest: /etc/systemd/system/backendticker.service
+    content: |
+      [Unit]
+      Description=Ticker backend
+
+      [Service]
+      Type=simple
+      ExecStart=/opt/ticker/backend
+      WorkingDirectory=/opt/ticker/
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+- name: Enable and restart Ticker service
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+    name: backendticker

@@ -1,17 +1,11 @@
 ---
 - hosts: prod
-  roles:
-    - { role: datadog.datadog, become: yes }
-  vars_files:
-    - vars.yaml
   tasks:
-
-  - name: Uploading Caddfile
-    copy:
-      src: ../data/Caddyfile
-      dest: /etc/caddy/Caddyfile
-  
-  - name: Restarting Caddyservice
-    systemd:
-      state: restarted
-      name: caddy
+    - name: Upload
+      include_tasks: tasks/upload.yaml
+    - name: Ticker
+      include_tasks: tasks/ticker.yaml
+    - name: Shirts
+      include_tasks: tasks/shirts.yaml
+    - name: Caddy
+      include_tasks: tasks/caddy.yaml

@@ -1,0 +1,22 @@
+---
+- hosts: all
+  roles:
+    - { role: datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: "5faebf15670514349970e9d499bf3ca8"
+    datadog_site: "datadoghq.com"
+    datadog_config:
+      logs_enabled: true
+    datadog_checks:
+      journald:
+        logs:
+          - type: journald
+            include_units:
+              - backendticker.service
+              - backendshirts.service
+      caddy:
+        logs:
+          - type: file
+            path: /var/log/caddy.access.log
+            service: caddy
+            source: caddy

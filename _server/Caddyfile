@@ -1,5 +1,5 @@
-machineand.me:80 {
-    redir https://machineand.me
+:80 {
+  redir https://{host}{uri}
 }
 
 machineand.me:443 {
@@ -7,10 +7,51 @@ machineand.me:443 {
     header Location http:// https://
     
     encode zstd gzip
-    header Cache-Control max-age=3600
+    header Cache-Control must-revalidate
 
     root * /data/static/www/
     file_server browse
+
+    log {
+        output file /var/log/caddy.access.log {
+            roll_size 1gb
+            roll_keep 5
+            roll_keep_for 720h
+        }
+    }
+    handle_errors {
+        @404 {
+            expression {http.error.status_code} == 404
+        }
+        rewrite @404 404.html
+        file_server
+    }
+}
+
+shirts.machineand.me:443 {
+    tls billionspoint@gmail.com
+    header Location http:// https://
+    
+    encode zstd gzip
+
+    reverse_proxy 127.0.0.1:8080
+
+    log {
+        output file /var/log/caddy.access.log {
+            roll_size 1gb
+            roll_keep 5
+            roll_keep_for 720h
+        }
+    }
+}
+
+ticker.love:443 {
+    tls billionspoint@gmail.com
+    header Location http:// https://
+    
+    encode zstd gzip
+
+    reverse_proxy 127.0.0.1:1323
 
     log {
         output file /var/log/caddy.access.log {
