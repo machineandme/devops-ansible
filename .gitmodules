@@ -1,0 +1,6 @@
+[submodule "data/ticker"]
+	path = data/ticker
+	url = git@github.com:machineandme/ticker-backend.git
+[submodule "data/shirts"]
+	path = data/shirts
+	url = git@github.com:machineandme/shirts.git
