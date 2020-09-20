@@ -1,7 +1,7 @@
 ---
 - name: Uploading static
   synchronize:
-    src: ../_server/static
+    src: ../data/server/static
     dest: /data/
 - name: Uploading shirts backend
   synchronize:
