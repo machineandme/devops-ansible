@@ -1,0 +1,1 @@
+![Deploy](https://github.com/machineandme/machineand.me/workflows/Deploy/badge.svg)
