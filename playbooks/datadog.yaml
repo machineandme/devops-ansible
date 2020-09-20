@@ -7,6 +7,8 @@
     datadog_site: "datadoghq.com"
     datadog_config:
       logs_enabled: true
+      process_config:
+        enabled: "true"
     datadog_checks:
       journald:
         logs:
