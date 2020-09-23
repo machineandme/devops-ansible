@@ -10,6 +10,13 @@
       process_config:
         enabled: "true"
     datadog_checks:
+      systemd:
+        init_config:
+        instances:
+          - unit_names:
+              - backendticker
+              - backendshirts
+              - caddy
       journald:
         logs:
           - type: journald
