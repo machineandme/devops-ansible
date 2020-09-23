@@ -1,6 +1,8 @@
 ---
 - hosts: prod
   tasks:
+    - name: Security settings
+      include_tasks: tasks/security.yaml
     - name: Upload
       include_tasks: tasks/upload.yaml
     - name: Ticker
