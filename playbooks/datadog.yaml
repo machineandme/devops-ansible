@@ -29,3 +29,9 @@
             path: /var/log/caddy.access.log
             service: caddy
             source: caddy
+      ufirewall:
+        logs:
+          - type: file
+            path: /var/log/ufw.log
+            service: ufirewall
+            source: ufirewall
