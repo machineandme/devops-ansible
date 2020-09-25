@@ -40,12 +40,12 @@
       file:
         path: /var/log/ufw.log
         mode: "0774"
-        state: present
+        state: touch
     - name: Chmod for log caddy file
       file:
         path: /var/log/caddy.access.log
         mode: "0774"
-        state: present
+        state: touch
 
 - hosts: cache
   roles:
@@ -75,7 +75,7 @@
       file:
         path: /var/log/redis_6379.log
         mode: "0774"
-        state: present
+        state: touch
 
 # - hosts: database
 #   roles:
@@ -135,4 +135,4 @@
 #       file:
 #         path: /var/log/kafka/server.log
 #         mode: "0774"
-#         state: present
+#         state: touch
