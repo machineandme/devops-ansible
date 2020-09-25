@@ -39,12 +39,12 @@
     - name: Chmod for log ufw file
       file:
         path: /var/log/ufw.log
-        mode: "0774"
+        mode: "0777"
         state: touch
     - name: Chmod for log caddy file
       file:
         path: /var/log/caddy.access.log
-        mode: "0774"
+        mode: "0777"
         state: touch
 
 - hosts: cache
@@ -74,7 +74,7 @@
     - name: Chmod for redis log file
       file:
         path: /var/log/redis_6379.log
-        mode: "0774"
+        mode: "0777"
         state: touch
 
 # - hosts: database
@@ -134,5 +134,5 @@
 #     - name: Chmod for log kafka file
 #       file:
 #         path: /var/log/kafka/server.log
-#         mode: "0774"
+#         mode: "0777"
 #         state: touch
