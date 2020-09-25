@@ -13,10 +13,6 @@ jobs:
           token: '${{ secrets.PAT2 }}'
           submodules: recursive
 
-      - name: Ticker build
-        run: ./build.sh
-        working-directory: ./data/ticker/
-
       - name: Write ssh key
         run: |
           mkdir -p ~/.ssh
@@ -24,6 +20,10 @@ jobs:
           echo "${{ secrets.SSH_PUB }}" > ~/.ssh/id_rsa.pub
           chmod 600 ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa.pub
+
+      - name: Ticker build
+        run: ./build.sh
+        working-directory: ./data/ticker/
 
       - name: Ansible upload
         run: ansible-playbook playbooks/machines/upload.yaml
