@@ -22,6 +22,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo $SSH > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
 
       - name: Ansible upload
         run: ansible-playbook playbooks/machines/upload.yaml
