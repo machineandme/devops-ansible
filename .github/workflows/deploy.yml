@@ -22,6 +22,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a bash
           ssh-add - <<< $SSH
 
       - name: Ansible upload
