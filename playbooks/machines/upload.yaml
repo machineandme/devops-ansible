@@ -3,13 +3,13 @@
   tasks:
   - name: Uploading static
     synchronize:
-      src: ../data/server/static
+      src: ../../data/server/static
       dest: /data/
   - name: Uploading shirts backend
     synchronize:
-      src: ../data/shirts
+      src: ../../data/shirts
       dest: /opt/
   - name: Uploading ticker backend
     synchronize:
-      src: ../data/ticker/dist/
+      src: ../../data/ticker/dist/
       dest: /opt/ticker/

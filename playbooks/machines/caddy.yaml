@@ -32,7 +32,7 @@
       shell: /usr/sbin/nologin
   - name: Uploading Caddfile
     copy:
-      src: ../data/server/Caddyfile
+      src: ../../data/server/Caddyfile
       dest: /etc/caddy/Caddyfile
   - name: Restarting Caddyservice
     systemd:
