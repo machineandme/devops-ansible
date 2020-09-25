@@ -1,0 +1,40 @@
+---
+- hosts: machines
+  tasks:
+  - name: Installing Fedora Copr
+    dnf:
+      name: dnf-command(copr)
+      state: present
+  - name: Enable Fedora Copr for caddy
+    command:
+      cmd: dnf copr enable -y @caddy/caddy
+  - name: Installing Caddy
+    dnf:
+      name: caddy
+      state: present
+  - name: Enable Caddy in systemd
+    systemd:
+      daemon_reload: yes
+      enabled: yes
+      state: started
+      name: caddy
+  - name: Ensure group for Caddy exists
+    group:
+      name: caddy
+      state: present
+  - name: Adding user for Caddy
+    user:
+      name: caddy
+      group: caddy
+      comment: Caddy web server
+      system: yes
+      home: /var/lib/caddy
+      shell: /usr/sbin/nologin
+  - name: Uploading Caddfile
+    copy:
+      src: ../../data/server/Caddyfile
+      dest: /etc/caddy/Caddyfile
+  - name: Restarting Caddyservice
+    systemd:
+      state: restarted
+      name: caddy

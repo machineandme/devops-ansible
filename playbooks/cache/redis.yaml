@@ -1,0 +1,13 @@
+---
+- hosts: cache
+  tasks:
+  - name: Installing Redis
+    dnf:
+      name: redis
+      state: present
+  - name: Enable Redis in systemd
+    systemd:
+      daemon_reload: yes
+      enabled: yes
+      state: started
+      name: redis
