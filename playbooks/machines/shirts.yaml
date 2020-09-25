@@ -1,6 +1,10 @@
 ---
 - hosts: machines
   tasks:
+  - name: Requirements install
+    pip:
+      name:
+      - pipenv
   - name: Requirements check
     shell: pipenv lock -r > requirements.txt
     args:
