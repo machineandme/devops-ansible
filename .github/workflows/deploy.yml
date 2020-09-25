@@ -19,7 +19,11 @@ jobs:
         working-directory: ./data/ticker/
 
       - name: Write ssh key
-        run: echo "$SSH" > ~/.ssh/id_rsa && ssh-add ~/.ssh/id_rsa
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< $SSH
 
       - name: Ansible upload
         run: ansible-playbook playbooks/machines/upload.yaml
