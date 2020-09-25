@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo $SSH > ~/.ssh/id_rsa
-          echo $SSH_PUB > ~/.ssh/id_rsa
+          echo $SSH_PUB > ~/.ssh/id_rsa.pub
           chmod 400 ~/.ssh/id_rsa
           chmod 400 ~/.ssh/id_rsa.pub
 
