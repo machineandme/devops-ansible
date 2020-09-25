@@ -1,5 +1,3 @@
-#!python3
-
 import requests
 import yaml
 import os

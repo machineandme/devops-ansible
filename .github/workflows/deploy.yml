@@ -23,7 +23,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa.pub
       
       - name: Buildnig invntory
-        run: ./build_inventory.py
+        run: python3 build_inventory.py
 
       - name: Install datadog role ansible from galaxy
         run: pip install pyyaml datadog packaging && ansible-galaxy install datadog.datadog
