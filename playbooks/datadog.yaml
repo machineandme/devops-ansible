@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: machines
   roles:
     - { role: datadog.datadog, become: yes }
   vars:
@@ -35,3 +35,100 @@
             path: /var/log/ufw.log
             service: ufirewall
             source: ufirewall
+  tasks:
+    - name: Chmod for log ufw file
+      file:
+        path: /var/log/ufw.log
+        mode: '0774'
+    - name: Chmod for log caddy file
+      file:
+        path: /var/log/caddy.access.log
+        mode: '0774'
+
+- hosts: cache
+  roles:
+    - { role: datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: "5faebf15670514349970e9d499bf3ca8"
+    datadog_site: "datadoghq.com"
+    datadog_config:
+      logs_enabled: true
+      process_config:
+        enabled: "true"
+    datadog_checks:
+      redisdb:
+        init_config:
+        instances:
+        - host: localhost
+          port: 6379
+          # username: <USERNAME>
+          # password: <PASSWORD>
+        logs:
+        - type: file
+          path: /var/log/redis_6379.log
+          source: redis
+          service: myapplication
+  tasks:
+  - name: Chmod for redis log file
+    file:
+      path: /var/log/redis_6379.log
+      mode: '0774'
+
+# - hosts: database
+#   roles:
+#     - { role: datadog.datadog, become: yes }
+#   vars:
+#     datadog_api_key: "5faebf15670514349970e9d499bf3ca8"
+#     datadog_site: "datadoghq.com"
+#     datadog_config:
+#       logs_enabled: true
+#       process_config:
+#         enabled: "true"
+#     datadog_checks:
+#       postgres:
+#         init_config:
+#         instances:
+#           - host: localhost
+#             port: 5432
+#             # username: <USERNAME>
+#             # password: <PASSWORD>
+#   tasks:
+#     - name: Create datadog user
+#       postgresql_user:
+#         db: acme
+#         name: django
+#         password: ceec4eif7ya
+#         priv: "CONNECT/products:ALL"
+#         expires: "Jan 31 2020"
+
+# - hosts: queue
+#   roles:
+#     - { role: datadog.datadog, become: yes }
+#   vars:
+#     datadog_api_key: "5faebf15670514349970e9d499bf3ca8"
+#     datadog_site: "datadoghq.com"
+#     datadog_config:
+#       logs_enabled: true
+#       process_config:
+#         enabled: "true"
+#     datadog_checks:
+#       kafka:
+#         init_config:
+#           is_jmx: true
+#           collect_default_metrics: true
+#         instances:
+#           - host: localhost
+#             port: 9999
+#         logs:
+#           - type: file
+#             path: /var/log/kafka/server.log
+#             source: kafka
+#             log_processing_rules:
+#             - type: multi_line
+#               name: start_with_date
+#               pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
+#   tasks:
+#     - name: Chmod for log kafka file
+#       file:
+#         path: /var/log/kafka/server.log
+#         mode: '0774'
