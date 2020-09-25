@@ -39,11 +39,13 @@
     - name: Chmod for log ufw file
       file:
         path: /var/log/ufw.log
-        mode: '0774'
+        mode: "0774"
+        state: present
     - name: Chmod for log caddy file
       file:
         path: /var/log/caddy.access.log
-        mode: '0774'
+        mode: "0774"
+        state: present
 
 - hosts: cache
   roles:
@@ -59,20 +61,21 @@
       redisdb:
         init_config:
         instances:
-        - host: localhost
-          port: 6379
-          # username: <USERNAME>
-          # password: <PASSWORD>
+          - host: localhost
+            port: 6379
+            # username: <USERNAME>
+            # password: <PASSWORD>
         logs:
-        - type: file
-          path: /var/log/redis_6379.log
-          source: redis
-          service: myapplication
+          - type: file
+            path: /var/log/redis_6379.log
+            source: redis
+            service: myapplication
   tasks:
-  - name: Chmod for redis log file
-    file:
-      path: /var/log/redis_6379.log
-      mode: '0774'
+    - name: Chmod for redis log file
+      file:
+        path: /var/log/redis_6379.log
+        mode: "0774"
+        state: present
 
 # - hosts: database
 #   roles:
@@ -124,11 +127,12 @@
 #             path: /var/log/kafka/server.log
 #             source: kafka
 #             log_processing_rules:
-#             - type: multi_line
-#               name: start_with_date
-#               pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
+#               - type: multi_line
+#                 name: start_with_date
+#                 pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])
 #   tasks:
 #     - name: Chmod for log kafka file
 #       file:
 #         path: /var/log/kafka/server.log
-#         mode: '0774'
+#         mode: "0774"
+#         state: present
