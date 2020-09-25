@@ -6,7 +6,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SP: ${{ secrets.SP }}
+      SSH: ${{ secrets.SSH }}
       ANSIBLE_HOST_KEY_CHECKING: "False"
     steps:
       - uses: actions/checkout@v2
@@ -18,14 +18,20 @@ jobs:
         run: ./build.sh
         working-directory: ./data/ticker/
 
-      - name: Ansible
-        run: |
-          echo "
+      - name: Write ssh key
+        run: echo "$SSH" > ~/.ssh/id_rsa && ssh-add ~/.ssh/id_rsa
 
-          [all:vars]
-          ansible_connection=ssh
-          ansible_user=root
-          ansible_ssh_pass=$SP
-          " >> inventory.cfg
+      - name: Ansible upload
+        run: ansible-playbook playbooks/machines/upload.yaml
 
-          ansible-playbook playbooks/deploy.yaml
+      - name: Ansible shirts
+        run: ansible-playbook playbooks/machines/shirts.yaml
+
+      - name: Ansible ticker
+        run: ansible-playbook playbooks/machines/ticker.yaml
+
+      - name: Ansible caddy
+        run: ansible-playbook playbooks/machines/caddy.yaml
+
+      - name: Install datadog role ansible from galaxy
+        run: ansible-galaxy install datadog.datadog

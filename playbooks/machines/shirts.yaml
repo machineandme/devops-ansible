@@ -1,0 +1,32 @@
+---
+- hosts: machines
+  tasks:
+  - name: Requirements check
+    shell: pipenv lock -r > requirements.txt
+    args:
+      chdir: /opt/shirts/
+      creates: /opt/shirts/requirements.txt
+  - name: Requirements install
+    pip:
+      requirements: /opt/shirts/requirements.txt
+  - name: Creating Shirts service in systemd
+    copy:
+      dest: /etc/systemd/system/backendshirts.service
+      content: |
+        [Unit]
+        Description=Shirts backend
+
+        [Service]
+        Type=simple
+        ExecStart=/usr/bin/python3.8 /opt/shirts/server.py -dev
+        WorkingDirectory=/opt/shirts/
+        Restart=always
+
+        [Install]
+        WantedBy=multi-user.target
+  - name: Enable and restart Shirts service
+    systemd:
+      daemon_reload: yes
+      enabled: yes
+      state: restarted
+      name: backendshirts
