@@ -21,21 +21,27 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa.pub
 
-      - name: Ticker build
+      - name: Install datadog role ansible from galaxy
+        run: ansible-galaxy install datadog.datadog
+
+      - name: Ansible datadog
+        run: ansible-playbook playbooks/datadog.yaml
+
+      - name: Ansible cache redis
+        run: ansible-playbook playbooks/cache/redis.yaml
+
+      - name: Ansible machines upload
+        run: ansible-playbook playbooks/machines/upload.yaml
+
+      - name: Ansible machines shirts
+        run: ansible-playbook playbooks/machines/shirts.yaml
+
+      - name: Build ticker
         run: ./build.sh
         working-directory: ./data/ticker/
 
-      - name: Ansible upload
-        run: ansible-playbook playbooks/machines/upload.yaml
-
-      - name: Ansible shirts
-        run: ansible-playbook playbooks/machines/shirts.yaml
-
-      - name: Ansible ticker
+      - name: Ansible machines ticker
         run: ansible-playbook playbooks/machines/ticker.yaml
 
-      - name: Ansible caddy
+      - name: Ansible machines caddy
         run: ansible-playbook playbooks/machines/caddy.yaml
-
-      - name: Install datadog role ansible from galaxy
-        run: ansible-galaxy install datadog.datadog
