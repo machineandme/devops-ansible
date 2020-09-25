@@ -3,15 +3,6 @@
   tasks:
   - name: Requirements install
     pip:
-      name:
-      - pipenv
-  - name: Requirements check
-    shell: pipenv lock -r > requirements.txt
-    args:
-      chdir: /opt/shirts/
-      creates: /opt/shirts/requirements.txt
-  - name: Requirements install
-    pip:
       requirements: /opt/shirts/requirements.txt
   - name: Creating Shirts service in systemd
     copy:
