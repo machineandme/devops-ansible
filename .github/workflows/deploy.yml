@@ -6,8 +6,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SSH: ${{ secrets.SSH }}
-      SSH_PUB: ${{ secrets.SSH }}
       ANSIBLE_HOST_KEY_CHECKING: "False"
     steps:
       - uses: actions/checkout@v2
@@ -22,10 +20,10 @@ jobs:
       - name: Write ssh key
         run: |
           mkdir -p ~/.ssh
-          echo $SSH > ~/.ssh/id_rsa
-          echo $SSH_PUB > ~/.ssh/id_rsa.pub
-          chmod 400 ~/.ssh/id_rsa
-          chmod 400 ~/.ssh/id_rsa.pub
+          echo "${{ secrets.SSH }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PUB }}" > ~/.ssh/id_rsa.pub
+          chmod 600 ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa.pub
 
       - name: Ansible upload
         run: ansible-playbook playbooks/machines/upload.yaml
