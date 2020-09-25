@@ -21,9 +21,7 @@ jobs:
       - name: Write ssh key
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          eval $(ssh-agent -a bash) &
-          ssh-add - <<< $SSH
+          echo $SSH > ~/.ssh/id_rsa
 
       - name: Ansible upload
         run: ansible-playbook playbooks/machines/upload.yaml
