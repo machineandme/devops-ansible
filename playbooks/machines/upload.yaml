@@ -13,3 +13,7 @@
     synchronize:
       src: ../../data/ticker/dist/
       dest: /opt/ticker/
+  - name: Uploading foodrec backend
+    synchronize:
+      src: ../../data/foodrec/
+      dest: /opt/foodrec/

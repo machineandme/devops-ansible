@@ -13,6 +13,7 @@ Any subproject stored at [`./data/`](https://github.com/machineandme/machineand.
 + Folder [`./data/server`](https://github.com/machineandme/machineand.me/tree/master/data/server) is static files, like HTML and CSS, for website [machineand.me](https://machineand.me)
 + Submodule `./data/shirts/` is link to [github.com/machineandme/shirts](https://github.com/machineandme/shirts)
 + Submodule `./data/ticker/` is link to [github.com/machineandme/ticker-backend](https://github.com/machineandme/ticker-backend)
++ Submodule `./data/foodrec/` is link to [github.com/machineandme/food_recomendator](https://github.com/machineandme/food_recomendator)
 
 ## Ansible
 
@@ -47,3 +48,4 @@ And by task name
 |[`./playbooks/machines/caddy.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/caddy.yaml) | instruction to copy [`Caddyfile`](https://github.com/machineandme/machineand.me/blob/master/data/server/Caddyfile) and setup [Caddy](http://caddyserver.com) as server|
 |[`./playbooks/machines/shirts.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/shirts.yaml) | instruction for delivering [machineandme/shirts](https://github.com/machineandme/shirts)|
 |[`./playbooks/machines/ticker.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/ticker.yaml) |  instruction for delivering [machineandme/ticker-backend](https://github.com/machineandme/ticker-backend)|
+|[`./playbooks/machines/foodrec.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/foodrec.yaml) |  instruction for delivering [machineandme/food_recomendator](https://github.com/machineandme/food_recomendator)

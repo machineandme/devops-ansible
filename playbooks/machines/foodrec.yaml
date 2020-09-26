@@ -1,0 +1,59 @@
+---
+- hosts: machines
+  tasks:
+    - name: Build requirements install
+      pip:
+        name:
+          - aiohttp
+          - nltk
+          - tqdm
+          - scipy
+    - name: Downloading AI data
+      get_url:
+        url: https://dl.fbaipublicfiles.com/fasttext/vectors-english/wiki-news-300d-1M.vec.zip
+        dest: /opt/foodrec/
+        mode: "0777"
+    - name: Make sure that unzip installed
+      dnf:
+        name: unzip
+        state: present
+    - name: Extracting AI data
+      unarchive:
+        src: /opt/foodrec/wiki-news-300d-1M.vec.zip
+        dest: /opt/foodrec/
+        remote_src: yes
+    - name: Running AI generator
+      shell: python3 server/gena.py
+      args:
+        chdir: /opt/foodrec/
+        creates: /opt/foodrec/food.pkl
+    - name: Requirements install
+      pip:
+        name:
+          - aiohttp
+          - nltk
+          - numpy
+          - scipy
+    - name: Creating Foodrec service in systemd
+      copy:
+        dest: /etc/systemd/system/backendfoodrec.service
+        content: |
+          [Unit]
+          Description=Foodrec backend
+
+          [Service]
+          Type=simple
+          Environment=HOST=127.0.0.1
+          Environment=PORT=8081
+          ExecStart=/usr/bin/python3.8 /opt/foodrec/server/server.py
+          WorkingDirectory=/opt/foodrec/
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target
+    - name: Enable and restart Foodrec service
+      systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: restarted
+        name: backendfoodrec
