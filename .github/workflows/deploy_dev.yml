@@ -1,9 +1,9 @@
-name: Deliver
+name: Deliver to test server
 on:
   release:
     types: [prereleased]
 jobs:
-  deploy:
+  deploy-on-test-server:
     runs-on: ubuntu-latest
     env:
       ANSIBLE_HOST_KEY_CHECKING: "False"
