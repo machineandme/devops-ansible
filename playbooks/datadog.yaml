@@ -6,6 +6,10 @@
     datadog_api_key: "5faebf15670514349970e9d499bf3ca8"
     datadog_site: "datadoghq.com"
     datadog_config:
+      tags:
+        - "region:Frankfurt1"
+        - "availability-zone:digital-ocean"
+        - "instance-type:droplet"
       logs_enabled: true
       process_config:
         enabled: "true"
@@ -56,6 +60,10 @@
     datadog_api_key: "5faebf15670514349970e9d499bf3ca8"
     datadog_site: "datadoghq.com"
     datadog_config:
+      tags:
+        - "region:Frankfurt1"
+        - "availability-zone:digital-ocean"
+        - "instance-type:droplet"
       logs_enabled: true
       process_config:
         enabled: "true"

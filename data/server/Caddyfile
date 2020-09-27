@@ -2,7 +2,7 @@
   redir https://{host}{uri}
 }
 
-machineand.me:443 {
+machineand.me:443, test.machineand.me:443 {
     tls billionspoint@gmail.com
     header Location http:// https://
     
@@ -28,7 +28,7 @@ machineand.me:443 {
     }
 }
 
-dvärghare.com:443 {
+xn--dvrghare-1za:443, test.xn--dvrghare-1za:443 {
     tls billionspoint@gmail.com
     header Location http:// https://
     
@@ -54,13 +54,13 @@ dvärghare.com:443 {
     }
 }
 
-api.dvärghare.com:443 {
+api.xn--dvrghare-1za:443, test.api.xn--dvrghare-1za:443 {
     tls billionspoint@gmail.com
     header Location http:// https://
     
     encode zstd gzip
 
-    reverse_proxy 127.0.0.1:8081
+    reverse_proxy 127.0.0.1:1324
 
     log {
         output file /var/log/caddy.access.log {
@@ -71,7 +71,7 @@ api.dvärghare.com:443 {
     }
 }
 
-shirts.machineand.me:443 {
+shirts.machineand.me:443, test.shirts.machineand.me:443 {
     tls billionspoint@gmail.com
     header Location http:// https://
     
@@ -88,7 +88,7 @@ shirts.machineand.me:443 {
     }
 }
 
-ticker.love:443 {
+ticker.love:443, test.ticker.love:443 {
     tls billionspoint@gmail.com
     header Location http:// https://
     

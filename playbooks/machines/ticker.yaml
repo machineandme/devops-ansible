@@ -10,6 +10,7 @@
 
         [Service]
         Type=simple
+        Environment=HOST=127.0.0.1:1323
         ExecStart=/opt/ticker/backend
         WorkingDirectory=/opt/ticker/
         Restart=always
