@@ -34,11 +34,8 @@ jobs:
       - name: Ansible cache redis
         run: ansible-playbook playbooks/cache/redis.yaml
 
-      - name: Install Taskfile.dev
-        run: |
-          git clone https://github.com/go-task/task
-          cd task
-          go install -v ./cmd/task
+      - name: Install Task
+        uses: Arduino/actions/setup-taskfile@master
 
       - name: Build ticker
         run: task build
