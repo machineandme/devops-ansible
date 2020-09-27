@@ -4,3 +4,6 @@
 [submodule "data/shirts"]
 	path = data/shirts
 	url = git@github.com:machineandme/shirts.git
+[submodule "data/foodrec"]
+	path = data/foodrec
+	url = git@github.com:machineandme/food_recomendator.git

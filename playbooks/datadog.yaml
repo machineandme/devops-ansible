@@ -16,12 +16,14 @@
           - unit_names:
               - backendticker
               - backendshirts
+              - backendfoodrec
               - caddy
       journald:
         logs:
           - type: journald
             include_units:
               - backendticker.service
+              - backendfoodrec.service
               - backendshirts.service
       caddy:
         logs:

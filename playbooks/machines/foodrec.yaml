@@ -1,0 +1,24 @@
+---
+- hosts: machines
+  tasks:
+    - name: Creating Foodrec service in systemd
+      copy:
+        dest: /etc/systemd/system/backendfoodrec.service
+        content: |
+          [Unit]
+          Description=Foodrec backend
+
+          [Service]
+          Type=simple
+          ExecStart=/opt/foodrec/dist/backend
+          WorkingDirectory=/opt/foodrec/
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target
+    - name: Enable and restart Foodrec service
+      systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: restarted
+        name: backendfoodrec

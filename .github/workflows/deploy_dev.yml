@@ -1,9 +1,9 @@
-name: Deliver
+name: Deliver to test server
 on:
   release:
-    types: [released]
+    types: [prereleased]
 jobs:
-  deploy:
+  deploy-on-test-server:
     runs-on: ubuntu-latest
     env:
       ANSIBLE_HOST_KEY_CHECKING: "False"
@@ -35,7 +35,10 @@ jobs:
         run: ansible-playbook playbooks/cache/redis.yaml
 
       - name: Install Taskfile.dev
-        run: curl -sL https://taskfile.dev/install.sh | sh
+        run: |
+          git clone https://github.com/go-task/task
+          cd task
+          go install -v ./cmd/task
 
       - name: Build ticker
         run: ./bin/task build
