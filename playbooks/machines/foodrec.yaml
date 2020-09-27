@@ -10,6 +10,7 @@
 
           [Service]
           Type=simple
+          Environment=HOST=127.0.0.1:1324
           ExecStart=/opt/foodrec/dist/backend
           WorkingDirectory=/opt/foodrec/
           Restart=always
