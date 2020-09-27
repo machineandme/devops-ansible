@@ -35,14 +35,17 @@ jobs:
         run: ansible-playbook playbooks/cache/redis.yaml
 
       - name: Install Taskfile.dev
-        run: curl -sL https://taskfile.dev/install.sh | sh
+        run: |
+          git clone https://github.com/go-task/task
+          cd task
+          go install -v ./cmd/task
 
       - name: Build ticker
-        run: ./bin/task build
+        run: task build
         working-directory: ./data/ticker/
 
       - name: Build foodrec
-        run: ./bin/task build
+        run: task build
         working-directory: ./data/foodrec/
 
       - name: Ansible machines upload
