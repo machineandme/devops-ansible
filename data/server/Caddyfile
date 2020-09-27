@@ -161,7 +161,7 @@ test.xn--dvrghare-1za.com:443 {
     }
 }
 
-test.api.xn--dvrghare-1za.com:443 {
+testapi.xn--dvrghare-1za.com:443 {
     tls billionspoint@gmail.com
     header Location http:// https://
     
@@ -178,7 +178,7 @@ test.api.xn--dvrghare-1za.com:443 {
     }
 }
 
-test.shirts.machineand.me:443 {
+testshirts.machineand.me:443 {
     tls billionspoint@gmail.com
     header Location http:// https://
     
