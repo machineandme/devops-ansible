@@ -36,7 +36,7 @@ jobs:
         working-directory: ./data/foodrec/
 
       - name: Buildnig invntory
-        run: python3 build_inventory.py
+        run: python3 build_inventory.py -release
 
       - name: Ansible cache redis
         run: ansible-playbook playbooks/cache/redis.yaml
