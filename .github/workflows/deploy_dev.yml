@@ -1,7 +1,7 @@
 name: Deliver
 on:
   release:
-    types: [released]
+    types: [prereleased]
 jobs:
   deploy:
     runs-on: ubuntu-latest
