@@ -34,8 +34,8 @@ jobs:
       - name: Ansible cache redis
         run: ansible-playbook playbooks/cache/redis.yaml
 
-      - name: Install Task
-        uses: Arduino/actions/setup-taskfile@master
+      - name: Install Task deb
+        run: apt install https://github.com/go-task/task/releases/download/v3.0.0/task_linux_386.deb
 
       - name: Build ticker
         run: task build
