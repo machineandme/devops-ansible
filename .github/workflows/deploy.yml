@@ -1,4 +1,4 @@
-name: Deliver
+name: Production deliver
 on:
   release:
     types: [released]
@@ -22,20 +22,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa.pub
       
-      - name: Buildnig invntory
-        run: python3 build_inventory.py
-
-      - name: Install datadog role ansible from galaxy
-        run: pip install pyyaml datadog packaging && ansible-galaxy install datadog.datadog
-
-      - name: Ansible datadog
-        run: ansible-playbook playbooks/datadog.yaml
-
-      - name: Ansible cache redis
-        run: ansible-playbook playbooks/cache/redis.yaml
-
-      - name: Install Task deb
-        run: apt install https://github.com/go-task/task/releases/download/v3.0.0/task_linux_386.deb
+      - name: Install Taskfile.dev deb
+        run: sudo apt install https://github.com/go-task/task/releases/download/v3.0.0/task_linux_386.deb
 
       - name: Build ticker
         run: task build
@@ -44,6 +32,12 @@ jobs:
       - name: Build foodrec
         run: task build
         working-directory: ./data/foodrec/
+
+      - name: Buildnig invntory
+        run: python3 build_inventory.py
+
+      - name: Ansible cache redis
+        run: ansible-playbook playbooks/cache/redis.yaml
 
       - name: Ansible machines upload
         run: ansible-playbook playbooks/machines/upload.yaml
@@ -59,3 +53,9 @@ jobs:
 
       - name: Ansible machines caddy
         run: ansible-playbook playbooks/machines/caddy.yaml
+
+      - name: Install datadog role ansible from galaxy
+        run: pip install pyyaml datadog packaging && ansible-galaxy install datadog.datadog
+
+      - name: Ansible datadog
+        run: ansible-playbook playbooks/datadog.yaml
