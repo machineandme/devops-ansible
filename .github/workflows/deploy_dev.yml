@@ -41,11 +41,11 @@ jobs:
           go install -v ./cmd/task
 
       - name: Build ticker
-        run: ./bin/task build
+        run: task build
         working-directory: ./data/ticker/
 
       - name: Build foodrec
-        run: ./bin/task build
+        run: task build
         working-directory: ./data/foodrec/
 
       - name: Ansible machines upload
