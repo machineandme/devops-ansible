@@ -25,7 +25,7 @@ jobs:
       - name: Install Taskfile.dev deb
         run: |
           wget https://github.com/go-task/task/releases/download/v3.0.0/task_linux_386.deb
-          sudo apt install task_linux_386.deb
+          sudo dpkg -i ./task_linux_386.deb
 
       - name: Build ticker
         run: task build
