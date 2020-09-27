@@ -34,9 +34,16 @@ jobs:
       - name: Ansible cache redis
         run: ansible-playbook playbooks/cache/redis.yaml
 
+      - name: Install Taskfile.dev
+        run: curl -sL https://taskfile.dev/install.sh | sh
+
       - name: Build ticker
-        run: ./build.sh
+        run: ./bin/task build
         working-directory: ./data/ticker/
+
+      - name: Build foodrec
+        run: ./bin/task build
+        working-directory: ./data/foodrec/
 
       - name: Ansible machines upload
         run: ansible-playbook playbooks/machines/upload.yaml
@@ -46,6 +53,9 @@ jobs:
 
       - name: Ansible machines ticker
         run: ansible-playbook playbooks/machines/ticker.yaml
+
+      - name: Ansible machines foodrec
+        run: ansible-playbook playbooks/machines/foodrec.yaml
 
       - name: Ansible machines caddy
         run: ansible-playbook playbooks/machines/caddy.yaml
