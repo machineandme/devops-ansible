@@ -8,12 +8,10 @@
 
 ## Content
 
-Any subproject stored at [`./data/`](https://github.com/machineandme/machineand.me/tree/master/data):
+Any submodule stored at [`./data/`](https://github.com/machineandme/machineand.me/tree/master/data):
 
 + Folder [`./data/server`](https://github.com/machineandme/machineand.me/tree/master/data/server) is static files, like HTML and CSS, for website [machineand.me](https://machineand.me)
-+ Submodule `./data/shirts/` is link to [github.com/machineandme/shirts](https://github.com/machineandme/shirts)
-+ Submodule `./data/ticker/` is link to [github.com/machineandme/ticker-backend](https://github.com/machineandme/ticker-backend)
-+ Submodule `./data/foodrec/` is link to [github.com/machineandme/food_recomendator](https://github.com/machineandme/food_recomendator)
++ Submodules
 
 ## Ansible
 
@@ -46,6 +44,17 @@ And by task name
 |[`./playbooks/cache/redis.yaml`](https://github.com/machineandme/machineand.me/blob/master/playbooks/cache/redis.yaml) | instruction to run [Redis](http://redis.io) server |
 |[`./playbooks/machines/upload.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/upload.yaml) | instruction for upload static, configs and app data to target server|
 |[`./playbooks/machines/caddy.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/caddy.yaml) | instruction to copy [`Caddyfile`](https://github.com/machineandme/machineand.me/blob/master/data/server/Caddyfile) and setup [Caddy](http://caddyserver.com) as server|
-|[`./playbooks/machines/shirts.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/shirts.yaml) | instruction for delivering [machineandme/shirts](https://github.com/machineandme/shirts)|
-|[`./playbooks/machines/ticker.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/ticker.yaml) |  instruction for delivering [machineandme/ticker-backend](https://github.com/machineandme/ticker-backend)|
-|[`./playbooks/machines/foodrec.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/foodrec.yaml) |  instruction for delivering [machineandme/food_recomendator](https://github.com/machineandme/food_recomendator)
+|[`./playbooks/machines/codetee.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/codetee.yaml) | instruction for delivering [machineandme/codetee-backend-python](https://github.com/machineandme/codetee-backend-python)|
+|[`./playbooks/machines/ticker.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/ticker.yaml) |  instruction for delivering [machineandme/ticker-backend-go](https://github.com/machineandme/ticker-backend-go)|
+|[`./playbooks/machines/dvarghare.yaml`](https://github.com/machineandme/machineand.me/tree/master/playbooks/machines/dvarghare.yaml) |  instruction for delivering [machineandme/dvarghare-backend-go](https://github.com/machineandme/dvarghare-backend-go)
+
+
+## Links to servers
+
+| Project | Production | Test |
+|-|-|-|
+| Machine and me landing | [machineand.me](https://machineand.me) | [test.machineand.me](https://test.machineand.me) |
+| Codetee | [codetee.machineand.me](https://codetee.machineand.me) | [testcodetee.machineand.me](https://testcodetee.machineand.me) |
+| Ticker | [ticker.love](https://ticker.love) | [test.ticker.love](https://test.ticker.love) |
+| Dvarghare landing | [dvärghare.com](https://dvärghare.com) | [test.dvärghare.com](https://test.dvärghare.com) |
+| Dvarghare api | [api.dvärghare.com](https://api.dvärghare.com) | [testapi.dvärghare.com](https://testapi.dvärghare.com) |
