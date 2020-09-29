@@ -1,9 +1,9 @@
-[submodule "data/ticker-backend-golang"]
-	path = data/ticker-backend-golang
-	url = git@github.com:machineandme/ticker-backend-golang.git
 [submodule "data/codetee-backend-python"]
 	path = data/codetee-backend-python
 	url = git@github.com:machineandme/codetee-backend-python.git
 [submodule "data/dvarghare-backend-go"]
 	path = data/dvarghare-backend-go
 	url = git@github.com:machineandme/dvarghare-backend-go.git
+[submodule "data/ticker-backend-go"]
+	path = data/ticker-backend-go
+	url = git@github.com:machineandme/ticker-backend-go.git
