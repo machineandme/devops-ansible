@@ -19,16 +19,16 @@
         instances:
           - unit_names:
               - backendticker
-              - backendshirts
-              - backendfoodrec
+              - backendcodetee
+              - backenddvarghare
               - caddy
       journald:
         logs:
           - type: journald
             include_units:
               - backendticker.service
-              - backendfoodrec.service
-              - backendshirts.service
+              - backenddvarghare.service
+              - backendcodetee.service
       caddy:
         logs:
           - type: file

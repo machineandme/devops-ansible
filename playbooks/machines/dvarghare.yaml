@@ -1,25 +1,25 @@
 ---
 - hosts: machines
   tasks:
-    - name: Creating Foodrec service in systemd
+    - name: Creating Dvarghare service in systemd
       copy:
-        dest: /etc/systemd/system/backendfoodrec.service
+        dest: /etc/systemd/system/backenddvarghare.service
         content: |
           [Unit]
-          Description=Foodrec backend
+          Description=Dvarghare backend
 
           [Service]
           Type=simple
           Environment=HOST=127.0.0.1:1324
-          ExecStart=/opt/foodrec/dist/backend
-          WorkingDirectory=/opt/foodrec/
+          ExecStart=/opt/dvarghare/dist/backend
+          WorkingDirectory=/opt/dvarghare/
           Restart=always
 
           [Install]
           WantedBy=multi-user.target
-    - name: Enable and restart Foodrec service
+    - name: Enable and restart Dvarghare service
       systemd:
         daemon_reload: yes
         enabled: yes
         state: restarted
-        name: backendfoodrec
+        name: backenddvarghare

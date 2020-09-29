@@ -1,0 +1,27 @@
+---
+- hosts: machines
+  tasks:
+  - name: Requirements install
+    pip:
+      requirements: /opt/codetee/requirements.txt
+  - name: Creating Codetee service in systemd
+    copy:
+      dest: /etc/systemd/system/backendcodetee.service
+      content: |
+        [Unit]
+        Description=Codetee backend
+
+        [Service]
+        Type=simple
+        ExecStart=/usr/bin/python3.8 /opt/codetee/server.py -dev
+        WorkingDirectory=/opt/codetee/
+        Restart=always
+
+        [Install]
+        WantedBy=multi-user.target
+  - name: Enable and restart Codetee service
+    systemd:
+      daemon_reload: yes
+      enabled: yes
+      state: restarted
+      name: backendcodetee

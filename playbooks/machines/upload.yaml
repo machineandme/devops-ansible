@@ -5,15 +5,15 @@
     synchronize:
       src: ../../data/server/static
       dest: /data/
-  - name: Uploading shirts backend
+  - name: Uploading codetee backend
     synchronize:
-      src: ../../data/shirts
-      dest: /opt/
+      src: ../../data/codetee-backend-python/
+      dest: /opt/codetee/
   - name: Uploading ticker backend
     synchronize:
-      src: ../../data/ticker/dist/
+      src: ../../data/ticker-backend-go/dist/
       dest: /opt/ticker/
-  - name: Uploading foodrec backend
+  - name: Uploading dvarghare backend
     synchronize:
-      src: ../../data/foodrec/
-      dest: /opt/foodrec/
+      src: ../../data/dvarghare-backend-go/
+      dest: /opt/dvarghare/
