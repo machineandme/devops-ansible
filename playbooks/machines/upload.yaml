@@ -7,8 +7,8 @@
       dest: /data/
   - name: Uploading codetee backend
     synchronize:
-      src: ../../data/codetee-backend-python
-      dest: /opt/codetee
+      src: ../../data/codetee-backend-python/
+      dest: /opt/codetee/
   - name: Uploading ticker backend
     synchronize:
       src: ../../data/ticker-backend-go/dist/
