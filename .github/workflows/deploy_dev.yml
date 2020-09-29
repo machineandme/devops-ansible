@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: '${{ secrets.PAT2 }}'
+          token: "${{ secrets.PAT2 }}"
           submodules: recursive
 
       - name: Write ssh key
@@ -29,11 +29,11 @@ jobs:
 
       - name: Build ticker
         run: task build
-        working-directory: ./data/ticker/
+        working-directory: ./data/ticker-backend-go/
 
-      - name: Build foodrec
+      - name: Build dvarghare
         run: task build
-        working-directory: ./data/foodrec/
+        working-directory: ./data/dvarghare-backend-go/
 
       - name: Buildnig invntory
         run: python3 build_inventory.py
@@ -44,14 +44,14 @@ jobs:
       - name: Ansible machines upload
         run: ansible-playbook playbooks/machines/upload.yaml
 
-      - name: Ansible machines shirts
-        run: ansible-playbook playbooks/machines/shirts.yaml
+      - name: Ansible machines codetee
+        run: ansible-playbook playbooks/machines/codetee.yaml
 
       - name: Ansible machines ticker
         run: ansible-playbook playbooks/machines/ticker.yaml
 
-      - name: Ansible machines foodrec
-        run: ansible-playbook playbooks/machines/foodrec.yaml
+      - name: Ansible machines dvarghare
+        run: ansible-playbook playbooks/machines/dvarghare.yaml
 
       - name: Ansible machines caddy
         run: ansible-playbook playbooks/machines/caddy.yaml

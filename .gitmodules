@@ -1,9 +1,9 @@
-[submodule "data/ticker"]
-	path = data/ticker
-	url = git@github.com:machineandme/ticker-backend.git
-[submodule "data/shirts"]
-	path = data/shirts
-	url = git@github.com:machineandme/shirts.git
-[submodule "data/foodrec"]
-	path = data/foodrec
-	url = git@github.com:machineandme/food_recomendator.git
+[submodule "data/ticker-backend-golang"]
+	path = data/ticker-backend-golang
+	url = git@github.com:machineandme/ticker-backend-golang.git
+[submodule "data/codetee-backend-python"]
+	path = data/codetee-backend-python
+	url = git@github.com:machineandme/codetee-backend-python.git
+[submodule "data/dvarghare-backend-go"]
+	path = data/dvarghare-backend-go
+	url = git@github.com:machineandme/dvarghare-backend-go.git
