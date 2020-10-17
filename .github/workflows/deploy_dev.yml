@@ -1,9 +1,9 @@
-name: Test deliver
+name: Production deliver
 on:
   release:
-    types: [prereleased]
+    types: [released]
 jobs:
-  deploy-on-test-server:
+  deploy:
     runs-on: ubuntu-latest
     env:
       ANSIBLE_HOST_KEY_CHECKING: "False"
@@ -27,19 +27,16 @@ jobs:
           wget https://github.com/go-task/task/releases/download/v3.0.0/task_linux_amd64.deb
           sudo dpkg -i ./task_linux_amd64.deb
 
-      - name: Build ticker
-        run: task build
-        working-directory: ./data/ticker-backend-go/
+#       - name: Build ticker
+#         run: task build
+#         working-directory: ./data/ticker-backend-go/
 
-      - name: Build dvarghare
-        run: task build
-        working-directory: ./data/dvarghare-backend-go/
+#       - name: Build dvarghare
+#         run: task build
+#         working-directory: ./data/dvarghare-backend-go/
 
       - name: Buildnig invntory
         run: python3 build_inventory.py
-
-      - name: Ansible cache redis
-        run: ansible-playbook playbooks/cache/redis.yaml
 
       - name: Ansible machines upload
         run: ansible-playbook playbooks/machines/upload.yaml
@@ -47,11 +44,11 @@ jobs:
       - name: Ansible machines codetee
         run: ansible-playbook playbooks/machines/codetee.yaml
 
-      - name: Ansible machines ticker
-        run: ansible-playbook playbooks/machines/ticker.yaml
+#       - name: Ansible machines ticker
+#         run: ansible-playbook playbooks/machines/ticker.yaml
 
-      - name: Ansible machines dvarghare
-        run: ansible-playbook playbooks/machines/dvarghare.yaml
+#       - name: Ansible machines dvarghare
+#         run: ansible-playbook playbooks/machines/dvarghare.yaml
 
       - name: Ansible machines caddy
         run: ansible-playbook playbooks/machines/caddy.yaml
