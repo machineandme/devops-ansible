@@ -9,11 +9,11 @@
     synchronize:
       src: ../../data/codetee-backend-python/
       dest: /opt/codetee/
-  - name: Uploading ticker backend
-    synchronize:
-      src: ../../data/ticker-backend-go/dist/
-      dest: /opt/ticker/
-  - name: Uploading dvarghare backend
-    synchronize:
-      src: ../../data/dvarghare-backend-go/
-      dest: /opt/dvarghare/
+  # - name: Uploading ticker backend
+  #   synchronize:
+  #     src: ../../data/ticker-backend-go/dist/
+  #     dest: /opt/ticker/
+  # - name: Uploading dvarghare backend
+  #   synchronize:
+  #     src: ../../data/dvarghare-backend-go/
+  #     dest: /opt/dvarghare/
