@@ -36,7 +36,7 @@ jobs:
 #         working-directory: ./data/dvarghare-backend-go/
 
       - name: Buildnig invntory
-        run: python3 build_inventory.py
+        run: python3 build_inventory.py -release
 
       - name: Ansible machines upload
         run: ansible-playbook playbooks/machines/upload.yaml
