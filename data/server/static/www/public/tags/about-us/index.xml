@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About us on Machine and me</title>
+    <link>https://machineand.me/tags/about-us/</link>
+    <description>Recent content in About us on Machine and me</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://machineand.me/tags/about-us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What&#39;s next?</title>
+      <link>https://machineand.me/p/whats-next/</link>
+      <pubDate>Sun, 04 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://machineand.me/p/whats-next/</guid>
+      <description>Foundation, Community, Team Problem Many pet projects and interesting open source libraries stop being developed because the developer does not find time and interest in them.
+We created a fund where finance is not the main resource. The main resource of the fund is time spent on interesting projects by rising stars, founders and the best specialists. If your idea is interesting, it will definitely be executed by the masters. We gather the community to solve any problems.</description>
+    </item>
+    
+    <item>
+      <title>Launch of machineand.me project</title>
+      <link>https://machineand.me/p/launch-of-machineand.me-project/</link>
+      <pubDate>Mon, 20 May 2019 10:23:54 +0000</pubDate>
+      
+      <guid>https://machineand.me/p/launch-of-machineand.me-project/</guid>
+      <description>First launch On May 20, 2019 we registered the domain machineand.me. The mission of the company at that time was to make it easier for developers to work. We set goals for the optimization and automation of tasks and processes. We wanted to build our own DevOps stack. But the growth of our competences made us realize that our solutions were not flexible. That&amp;rsquo;s when we started looking for new missions and making new plans.</description>
+    </item>
+    
+  </channel>
+</rss>

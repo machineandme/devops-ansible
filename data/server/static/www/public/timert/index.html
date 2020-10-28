@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>.timert</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.1.1/css/nes.min.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <style>
+    #app {
+        margin-left: 20rem;
+        margin-right: 20rem;
+    }
+    @media only screen and (max-width: 1200px) {
+        #app {
+            margin-left: 0rem;
+            margin-right: 0rem;
+        }
+    }
+    * {cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII=),auto;}
+    .nes-btn {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0,pointer}
+    </style>
+</head>
+<body style="margin: 1em">
+    <div id="app" class ="nes-container with-title nes-pointer">
+        <h1 class="title">Timert</h1>
+        <p class="subtitle">Application for simple calculation how much time you spend on tasks in WBS. Reset button for day opening. Measure for task switch. Measure buttons has color settings, so you can remember what kind of action you have to do (work or rest etc). When you close tab all measures stop. But when you come back you will start right at point where you had to stop.</p>
+        <button class="nes-btn is-primary" @click="measure('is-primary')">Measure</button>
+        <button class="nes-btn is-success" @click="measure('is-success')">Measure</button>
+        <button class="nes-btn is-error" @click="measure('is-error')">Measure</button>
+        <button class="nes-btn is-warning is-small" @click="reset()">Reset</button>
+        <br><br>
+        {{timeaiz(time)}}
+        <br><br>
+        <progress class="nes-progress" :value="total+time" :max="3600*8"></progress>
+        <br>
+        <span style="font-size: .76em">
+            <a href="#" class="nes-badge">
+                <span class="is-primary">{{ timeaiz(history.map((c) => { return c[0] == "is-primary" ? c[1] : 0 }).filter((x)=>{return x !== 0}).reduce((a, b) => a + b, 0)) }}</span>
+            </a>
+        </span>
+        <span style="font-size: .76em">
+            <a href="#" class="nes-badge">
+                <span class="is-success">{{ timeaiz(history.map((c) => { return c[0] == "is-success" ? c[1] : 0 }).filter((x)=>{return x !== 0}).reduce((a, b) => a + b, 0)) }}</span>
+            </a>
+        </span>
+        <span style="font-size: .76em">
+            <a href="#" class="nes-badge">
+                <span class="is-error">{{ timeaiz(history.map((c) => { return c[0] == "is-error" ? c[1] : 0 }).filter((x)=>{return x !== 0}).reduce((a, b) => a + b, 0)) }}</span>
+            </a>
+        </span>
+        <span style="font-size: .76em">
+            <a href="#" class="nes-badge">
+                <span class="is-dark">= {{ timeaiz(total+time) }}</span>
+            </a>
+        </span>
+        <br>
+        <br>
+        <div v-for="h in history">
+            <span style="font-size: .5em">
+                <a href="#" class="nes-badge">
+                    <span :class="h[0]">{{timeaiz(h[1])}}</span>
+                </a>
+            </span>
+        </div>
+   </div>
+   <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                time: 0,
+                history: [],
+                total: 0,
+            },
+            methods: {
+                reset: function(){
+                    localStorage.clear();
+                    location.reload();
+                },
+                measure: function(clss) {
+                    app.history.unshift([clss, app.time]);
+                    app.time = 0;
+                },
+                timeaiz: function(time) {
+                    return `${(~~(time / 3600))}:${('000' + (~~(time / 60) % 60)).slice(-2)}.${('000' + (time % 60)).slice(-2)}`
+                }
+            },
+        })
+        setInterval(()=>{
+            let dietimert = localStorage.getItem("dietimert") || new Date().getTime();
+            dietimert = ~~((new Date().getTime() - parseFloat(dietimert)) / 1000);
+
+            app.time = parseInt(localStorage.getItem("timert")) + dietimert || 0;
+            app.history = JSON.parse(localStorage.getItem("history") || "[]");
+
+            localStorage.setItem("dietimert", new Date().getTime());
+            localStorage.setItem("timert", app.time);
+            localStorage.setItem("history", JSON.stringify(app.history));
+            app.total = app.history.map((c) => { return (c[0] == "is-primary" || c[0] == "is-success") ? c[1] : 0 }).filter((x)=>{return x !== 0}).reduce((a, b) => a + b, 0);
+        }, 1000)
+    </script>
+</body>
+</html>
