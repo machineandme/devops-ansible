@@ -66,13 +66,11 @@
    </div>
    <script src="https://unpkg.com/vue"></script>
     <script>
-        let dietimert = localStorage.getItem("dietimert") || new Date().getTime();
-        dietimert = ~~((new Date().getTime() - parseFloat(dietimert)) / 1000);
-        app = new Vue({
+        let app = new Vue({
             el: '#app',
             data: {
-                time: parseInt(localStorage.getItem("timert")) + dietimert || 0,
-                history: JSON.parse(localStorage.getItem("history") || "[]"),
+                time: 0,
+                history: [],
                 total: 0,
             },
             methods: {
@@ -90,7 +88,12 @@
             },
         })
         setInterval(()=>{
-            app.time += 1;
+            let dietimert = localStorage.getItem("dietimert") || new Date().getTime();
+            dietimert = ~~((new Date().getTime() - parseFloat(dietimert)) / 1000);
+
+            app.time = parseInt(localStorage.getItem("timert")) + dietimert || 0;
+            app.history = JSON.parse(localStorage.getItem("history") || "[]");
+
             localStorage.setItem("dietimert", new Date().getTime());
             localStorage.setItem("timert", app.time);
             localStorage.setItem("history", JSON.stringify(app.history));
